@@ -1,4 +1,6 @@
 using AutomationTravelAgency.Data;
+using AutomationTravelAgency.Repositories.Implementation;
+using AutomationTravelAgency.Repositories.Interface;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
 });
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
 var app = builder.Build();
 
